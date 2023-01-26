@@ -6,3 +6,8 @@
 - security (jwt)
 - logging
 - deployment
+
+
+
+make models 
+make validate in models 

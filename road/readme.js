@@ -3,6 +3,7 @@
 HEADLINE : make stracture
 * make folders: models - routes  - startup
 
+HEADLINE : models
 $ 1. file in models : branch.js
       * npm init --y
       * install to express joi and mongoose
@@ -13,14 +14,24 @@ $ 1. file in models : branch.js
       * npm i mongoose-sequence
       * require it and function after schema
       * make creation to my model
-      * export branch and validate finction and export it
-
+      *  validate finction and export it
+      * export branch 
 
 
 $ 2. file in models : employee.js
       * make schema in branch
       * time stamp to record
       * require it and function after schema
+      * put data=collections in schema
+         * when i put it : we have city =>
+             install full-countries-cities
+             > npm i full-countries-cities
+             require it
+      * make relation between emploee and branchID : 
+              embded to document or refrence to model
+      * then create model
+      *  validate finction and export it
+      * export employee and empolyeesSchema
 
 
 
