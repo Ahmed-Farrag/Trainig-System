@@ -10,4 +10,4 @@
 
 
 make models 
-make validate in models 
+make validate in models by joi and databaseschema

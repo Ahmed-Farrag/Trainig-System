@@ -33,7 +33,16 @@ $ 2. file in models : employee.js
       *  validate finction and export it
       * export employee and empolyeesSchema
 
-
+$ 3. file in models : student.js
+      * same thing in employee but : 
+            * in mobile make custem function : i wanna local in spsefic country
+            npm i validator
+            require it
+            * and write function
+    
+$ 4. file in models : course.js
+      * same thing in student  
+            
 
 
 

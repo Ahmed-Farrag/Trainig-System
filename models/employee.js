@@ -19,7 +19,7 @@ const empolyeesSchema = mongoose
         trim: true,
         maxlength: 255,
         minlength: 3,
-        lowecase: true,
+        lowercase: true,
       },
       nationalID: {
         type: String,
@@ -71,7 +71,7 @@ const empolyeesSchema = mongoose
         type: String,
         required: true,
         enum: ["male", "female"],
-        lowecase: true,
+        lowercase: true,
         trim: true,
       },
       city: {
@@ -86,7 +86,7 @@ const empolyeesSchema = mongoose
         trim: true,
         maxlength: 255,
         minlength: 5,
-        lowecase: true,
+        lowercase: true,
       },
       branchID: {
         type: mongoose.Schema.Types.Number,
@@ -97,7 +97,7 @@ const empolyeesSchema = mongoose
     },
     { timestamps: true }
   )
-  .plugin(autoencrement, { inc_field: "branchID" });
+  .plugin(autoencrement, { inc_field: "employeeID" });
 
 const Employee = mongoose.model("employees", empolyeesSchema);
 
