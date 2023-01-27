@@ -47,6 +47,7 @@ $ 5. file in models : group.js
       * same thing in student  
       * put course and employee refernce
       * make group Schedule prop  => array : case group of c# have spicific time in week
+      * and validate it by Joi.arry().items({Joi.object()})
 
 
 
