@@ -9,5 +9,7 @@
 
 
 
-make models 
-make validate in models by joi and databaseschema
+# make models 
+# make validate in models by joi and databaseschema
+# make database config in start file
+# make routes

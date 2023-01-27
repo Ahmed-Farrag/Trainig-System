@@ -43,14 +43,14 @@ $ 3. file in models : student.js
 $ 4. file in models : course.js
       * same thing in student  
             
-$ 5. file in models : group.js
+$ 5. file in models : group.js => group to all thing about course
       * same thing in student  
       * put course and employee refernce
       * make group Schedule prop  => array : case group of c# have spicific time in week
       * and validate it by Joi.arry().items({Joi.object()})
 
 
-
-
+$ 6. Assign students =>  assing all files in file and payments to all 
+ * same thing in student  
 
 */
