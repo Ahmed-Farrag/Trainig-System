@@ -53,4 +53,10 @@ $ 5. file in models : group.js => group to all thing about course
 $ 6. Assign students =>  assing all files in file and payments to all 
  * same thing in student  
 
+
+
+
+HEADLINE: server file
+* require express 
+* port
 */
