@@ -16,7 +16,3 @@ const dbConnection = () => {
     .catch((err) => console.log(err.message));
 };
 exports.modules = dbConnection;
-
-
-
-// mongoose.set("useFindAndModif", false);
