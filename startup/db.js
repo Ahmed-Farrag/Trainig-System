@@ -1,0 +1,22 @@
+const mongoose = require("mongoose");
+
+const dbConnection = () => {
+  // const server = "localhost"; // REPLACE WITH YOUR DB SERVER
+  // const database = "yourCourses"; // REPLACE WITH YOUR DB NAME
+
+  const options = {
+    useCreateIndex: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModif: false
+  };
+
+  mongoose.connect(process.env.DB, options)
+    .then(() => console.log("connected the DataBase done"))
+    .catch((err) => console.log(err.message));
+};
+exports.modules = dbConnection;
+
+
+
+// mongoose.set("useFindAndModif", false);

@@ -57,6 +57,21 @@ $ 6. Assign students =>  assing all files in file and payments to all
 
 
 HEADLINE: server file
-* require express 
-* port
+    * require express 
+    * port
+    * require startup/db  and  startup/routes
+
+
+HEADLINE: in startup 
+    *make file to db.js : 
+    *  and routes.js
+
+$ 1 in db.js 
+    * make connect and mongoose.set('usefinAndModify', false)
+
+! to read db information from config file : to noone change my js files 
+> npm i dotenv
+
+
+    
 */

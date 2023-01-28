@@ -1,5 +1,10 @@
 const express = require("express");
 const app = express();
+const d = require("./startup/config");
 
-const port = process.env.PORT || 4000;
-app.listen(port, () => console.log(`connected the port : ${port}`));
+require("./startup/db");
+require("./startup/routes");
+
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, () => console.log(`connected the port : ${PORT}`));
