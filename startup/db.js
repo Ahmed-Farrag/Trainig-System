@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
+// const config = require('config');
 
+// exports.modules= ()=>{}
 const dbConnection = () => {
-  const server = "localhost"; // REPLACE WITH YOUR DB SERVER
+  const server = "localhost"; // REPLACE WITH YOUR SERVER NAME
   const database = "yourCourses"; // REPLACE WITH YOUR DB NAME
 
   const options = {

@@ -25,15 +25,26 @@ const branchSchema = new mongoose.Schema(
 
 const Branch = mongoose.model("branch", branchSchema);
 
-function validateBranch(branch) {
-  const schema = Joi.object({
+// *remove it case the code in validation.js in middleware
+// function validateBranch(branch) {
+//   const schema = Joi.object({
+//     name: Joi.string().required(),
+//     address: Joi.string().required(),
+//     details: Joi.string(),
+//     ip: Joi.string().required(),
+//   });
+//   return schema.validate(branch);
+// }
+
+
+  const Schema = Joi.object({
     name: Joi.string().required(),
     address: Joi.string().required(),
     details: Joi.string(),
     ip: Joi.string().required(),
   });
-  return schema.validate(branch);
-}
+
 
 exports.Branch = Branch;
-exports.validate = validateBranch;
+// exports.validate = validateBranch;
+exports.Schema = Schema
