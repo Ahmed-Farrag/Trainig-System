@@ -6,10 +6,9 @@ const validationMiddleware = require("/middleware/validation");
 
 // 1. get route
 router.get("/", async (req, res, next) => {
- 
   try {
-    const branch = await Branch.find().sort("branchID").select("-_id -__v");
-    res.send(branch);
+    const employee = await Emplyee.find().sort("employeeID").select("-_id -__v");
+    res.send(employee);
   } catch (error) {
     next(err);
   }
@@ -18,9 +17,9 @@ router.get("/", async (req, res, next) => {
 // 2. get by id
 router.get("/:id", async (req, res, next) => {
   try {
-    const branch = await Branch.find({ branchID: req.params.id });
-    if (!branch) return res.status(400).send("the Branch not found");
-    res.send(branch);
+    const employee = await Emplyee.findOne({ employeeID: req.params.id }).select('-_id -_v')
+    if (!employee) return res.status(404).send("the employee with the given ID was not found");
+    res.send(employee);
   } catch (error) {
     next(err);
   }

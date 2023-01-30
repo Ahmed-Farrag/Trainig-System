@@ -19,7 +19,7 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
   try {
     const branch = await Branch.find({ branchID: req.params.id });
-    if (!branch) return res.status(400).send("the Branch not found");
+    if (!branch) return res.status(404).send("the Branch not found");
     res.send(branch);
   } catch (error) {
     next(err);
