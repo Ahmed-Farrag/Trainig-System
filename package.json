@@ -16,6 +16,7 @@
     "full-countries-cities": "^0.0.9",
     "joi": "^17.7.0",
     "mongoose": "^6.9.0",
+    "mongoose-sequence": "^5.3.1",
     "validator": "^13.7.0"
   },
   "devDependencies": {

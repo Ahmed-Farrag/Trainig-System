@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const { model } = require("mongoose");
+// const { model } = require("mongoose");
 const { Branch, Schema } = require("../models/branch");
-const _ = requie("lodash");
-const validationMiddleware = require("/middleware/validation");
+const _ = require("lodash");
+const validationMiddleware = require("../middleware/validation");
 
 // 1. get route
 router.get("/", async (req, res, next) => {
@@ -27,7 +27,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // 3. post : i need to make creation in db => need to call branchmodel
-router.post("/", validationMiddleware.Schema, async (req, res, next) => {
+router.post("/", validationMiddleware(Schema), async (req, res, next) => {
   // run code her : validate
   try {
     // install lodash to mentain mycode : to didn't make req.body.name and address etc
@@ -44,7 +44,7 @@ router.post("/", validationMiddleware.Schema, async (req, res, next) => {
 });
 
 // 3. put : to update
-router.post("/:id", validationMiddleware(Schema), async (req, res, next) => {
+router.put("/:id", validationMiddleware(Schema), async (req, res, next) => {
   // run code her : validate
   try {
     // install lodash to mentain mycode : to didn't make req.body.name and address etc

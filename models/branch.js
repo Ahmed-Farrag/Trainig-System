@@ -16,7 +16,7 @@ const branchSchema = new mongoose.Schema(
       type: String,
     },
     ip: {
-      type: string,
+      type: String,
       required: true,
     },
   },
