@@ -71,4 +71,33 @@ router.post("/", validationMiddleware(Schema), async (req, res, next) => {
   }
 });
 
+router.put("/:id", validationMiddleware(Schema), async (req, res, next) => {
+  try {
+    const updateEmployee = await Employee.findOneAndUpdate(
+      { employeeID: req.params.id },
+      _.pick(req.body, [
+        "fullNameArabic",
+        "fullNameEnglish",
+        "nationalID",
+        "homeTel",
+        "mobile1",
+        "mobile2",
+        "email",
+        "gender",
+        "city",
+        "address",
+        "branchID",
+      ]),
+      { new: true, runValidators: true }
+    );
+    if (!updateEmployee)
+      return res
+        .status(404)
+        .send("the employee with the given ID was not found");
+    res.send(updateEmployee);
+  } catch (error) {
+    next(err);
+  }
+});
+
 module.exports = router;
