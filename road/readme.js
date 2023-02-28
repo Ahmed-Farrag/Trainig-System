@@ -122,11 +122,11 @@ and create all parses
 
 HEADLINE : create controlers = routes
 in routes folder make branch.js:
-1. useing to expres
+1. useing to express
 2. crud operations
 3. in post make validate
 4. install lodash to mentain mycode : >npm i lodash     - const _ = requie('lodash')
-5. take the repete validation and put it in middleware:
+5. //* take the repete validation and put it in middleware:
      make middlewre folder and create vaildate.js: cut function from branch and put it 
      and in branch model remove function and rplace it to Schema and requre it in branch router:
      router.post("/", validationMiddleware(Schema),async (req, res, next) => {}
