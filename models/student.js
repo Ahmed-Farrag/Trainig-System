@@ -113,8 +113,8 @@ const studentsSchema = new mongoose.Schema(
 
 const Student = mongoose.model("students", studentsSchema);
 
-function validationStudents(student) {
-  const schema = Joi.object({
+// function validationStudents(student) {
+  const Schema = Joi.object({
     employeeID: Joi.number().required().integer().positive(),
     fullNameArabic: Joi.string().required().max(255).min(3).trim(),
     fullNameEnglish: Joi.string().required().max(255).min(3).trim(),
@@ -143,9 +143,9 @@ function validationStudents(student) {
     address: Joi.string().required().max(255).min(5).trim(),
     branchID: Joi.number().required(),
   });
-  return schema.validate(student);
-}
+  // return schema.validate(student);
+// }
 
 exports.Student = Student;
 exports.validate = validationStudents;
-exports.studentsSchema = studentsSchema;
+exports.Schema = Schema;

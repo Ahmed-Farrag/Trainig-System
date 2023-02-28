@@ -74,8 +74,8 @@ const groupSchema = new mongoose.Schema(
 
 const Group = mongoose.model("groups", groupSchema);
 
-function validationGroup(group) {
-  const schema = Joi.object({
+// function validationGroup(group) {
+  const Schema = Joi.object({
     employeeID: Joi.number().required().integer().positive(),
     courseID: Joi.number().required().integer().positive(),
     groupName: Joi.string().required().trim(),
@@ -94,9 +94,9 @@ function validationGroup(group) {
     groupType: Joi.string().required().trim(),
     groupStatus: Joi.string().required().trim(),
   });
-  return schema.validate(group);
-}
+//   return schema.validate(group);
+// }
 
 exports.Group = Group;
 exports.validate = validationGroup;
-exports.groupSchema = groupSchema;
+exports.Schema = Schema;

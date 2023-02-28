@@ -101,8 +101,8 @@ const empolyeesSchema = mongoose
 
 const Employee = mongoose.model("employees", empolyeesSchema);
 
-function validationEmployee(emploee) {
-  const schema = Joi.object({
+// function validationEmployee(emploee) {
+  const Schema = Joi.object({
     fullNameArabic: Joi.string().required().max(255).min(3).trim(),
     fullNameEnglish: Joi.string().required().max(255).min(3).trim(),
     nationalID: Joi.string()
@@ -129,9 +129,9 @@ function validationEmployee(emploee) {
     address: Joi.string().required().max(255).min(5).trim(),
     branchID: Joi.number().required(),
   });
-  return schema.validate(emploee);
-}
+//   return schema.validate(emploee);
+// }
 
 exports.Employee = Employee;
 exports.validate = validationEmployee;
-exports.empolyeesSchema = empolyeesSchema;
+exports.Schema = Schema;

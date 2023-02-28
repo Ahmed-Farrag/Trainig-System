@@ -53,8 +53,8 @@ const courseSchema = new mongoose.Schema(
 
 const Course = mongoose.model("courses", Course);
 
-function validationStudents(course) {
-  const schema = Joi.object({
+// function validationStudents(course) {
+  const Schema = Joi.object({
     employeeID: Joi.number().required().integer().positive(),
     courseName: Joi.string().required().max(255).min(3).trim(),
     courseDesc: Joi.string().max(255).min(5).trim(),
@@ -64,9 +64,10 @@ function validationStudents(course) {
       coursePrice: Joi.number(),
       priceAfterDiscount: Joi.number(),
   });
-  return schema.validate(course);
-}
+//   return schema.validate(course);
+// }
 
 exports.Course = Course;
 exports.validate = validationStudents;
-exports.courseSchema = courseSchema;
+exports.Schema = Schema;
+// exports.courseSchema = courseSchema;

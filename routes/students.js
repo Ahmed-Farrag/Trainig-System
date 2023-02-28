@@ -68,7 +68,7 @@ router.post("/", validationMiddleware(Schema), async (req, res, next) => {
   }
 });
 
-router.put("/:id", async (req, res, next) => {
+router.put("/:id", validationMiddleware(Schema), async (req, res, next) => {
   try {
     const employeeID = await employee.findOne({
       employeeID: req.body.employeeID,

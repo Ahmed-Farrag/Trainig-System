@@ -49,8 +49,8 @@ const assignStudentSchema = new mongoose.Schema(
 
 const assignStudent = mongoose.model("assignStudent", assignStudentSchema);
 
-function validationAssignStudent(assignStudent) {
-  const schema = Joi.object({
+// function validationAssignStudent(assignStudent) {
+  const Schema = Joi.object({
     employeeID: Joi.number().required(),
     studentID: Joi.number().required(),
     groupID: Joi.number(),
@@ -58,9 +58,10 @@ function validationAssignStudent(assignStudent) {
     totalPayment: Joi.number().required(),
     isCourseFinished: Joi.boolean(),
   });
-  return schema.validate(assignStudent);
-}
+//   return schema.validate(assignStudent);
+// }
 
 exports.AssignStudent = assignStudent;
-exports.validate = validationAssignStudent;
+exports.Schema = Schema;
+// exports.validate = validationAssignStudent;
 
