@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { Emplyee, Schema } = require("../models/employee");
 const _ = require("lodash");
 const bcrybt = require("bcrypt");
-const validationMiddleware = require("/middleware/validation");
+const validationMiddleware = require("../middleware/validation");
 
 router.get("/", async (req, res, next) => {
   try {
@@ -11,7 +11,7 @@ router.get("/", async (req, res, next) => {
       .select("-_id -__v");
     res.send(employee);
   } catch (error) {
-    next(err);
+    next(error);
   }
 });
 
@@ -26,7 +26,7 @@ router.get("/:id", async (req, res, next) => {
         .send("the employee with the given ID was not found");
     res.send(employee);
   } catch (error) {
-    next(err);
+    next(error);
   }
 });
 
@@ -73,7 +73,7 @@ router.post("/", validationMiddleware(Schema), async (req, res, next) => {
     await emploee.save();
     res.send(emploee);
   } catch (error) {
-    next(err);
+    next(error);
   }
 });
 
@@ -102,7 +102,7 @@ router.put("/:id", validationMiddleware(Schema), async (req, res, next) => {
         .send("the employee with the given ID was not found");
     res.send(updateEmployee);
   } catch (error) {
-    next(err);
+    next(error);
   }
 });
 

@@ -7,8 +7,8 @@ router.get("/", async (req, res, next) => {
   try {
     const student = await Student.find().select("-_id -__v").sort("studentID");
     res.send(student);
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 });
 
@@ -22,8 +22,8 @@ router.get("/:id", async (req, res, next) => {
         .status(404)
         .send("the student with the given ID was not found");
     res.send(student);
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 });
 
@@ -63,8 +63,8 @@ router.post("/", validationMiddleware(Schema), async (req, res, next) => {
     );
     await student.save();
     res.send(student);
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 });
 
@@ -104,7 +104,7 @@ router.put("/:id", validationMiddleware(Schema), async (req, res, next) => {
         .send("the student with the given ID was not found");
     res.send(updateStudent);
   } catch (error) {
-    next(err);
+    next(error);
   }
 });
 

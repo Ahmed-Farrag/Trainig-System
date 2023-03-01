@@ -25,8 +25,8 @@ router.post("/", validationMiddleware(Schema), async (req, res, next) => {
     res
       .header("x-auth-token", token)
       .send(_.pich(user, ["email", "fullNameEnglish"]));
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 });
 

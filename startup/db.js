@@ -15,7 +15,7 @@ const dbConnection = () => {
 
   mongoose.connect(`mongodb://${server}/${database}` , options)
     .then(() => console.log("connected the DataBase done"))
-    .catch((err) => console.log(err.message));
+    .catch((error) => console.log(error.message));
 };
 exports.modules = dbConnection;
 

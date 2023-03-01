@@ -11,7 +11,7 @@ router.get("/", async (req, res, next) => {
     const branch = await Branch.find().sort("branchID").select("-_id -__v"); // select mean exclote : مش عايز دول يظهرو
     res.send(branch);
   } catch (error) {
-    next(err);
+    next(error);
   }
 });
 
@@ -22,7 +22,7 @@ router.get("/:id", async (req, res, next) => {
     if (!branch) return res.status(404).send("the Branch not found");
     res.send(branch);
   } catch (error) {
-    next(err);
+    next(error);
   }
 });
 
@@ -39,7 +39,7 @@ router.post("/", validationMiddleware(Schema), async (req, res, next) => {
     // if okay
     res.send(branch);
   } catch (error) {
-    next(err);
+    next(error);
   }
 });
 
@@ -59,7 +59,7 @@ router.put("/:id", validationMiddleware(Schema), async (req, res, next) => {
     // if okay
     res.send(updateBranch);
   } catch (error) {
-    next(err);
+    next(error);
   }
 });
 
