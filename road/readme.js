@@ -237,4 +237,16 @@ var logger = require("../config/winston");
 in routers.js : var morgan = require('morgan')
 const winston = require("../config/winston");
 app.use(morgan('combind', {stream: winston.stream}))
+
+
+
+* handle jwt in config file: 
+make file in startup folder -> config.js and make function if it her okay if not show error msg
+and call it in server.js  : require('./startup/config');
+
+
+HEADLINE : CORS to solve ports issuse 
+>npm i cors
+const cors = require('cors')
+app.use(cors())
 */

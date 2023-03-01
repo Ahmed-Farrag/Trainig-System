@@ -5,9 +5,12 @@ const branch = require("../routes/branch");
 const auth = require("../routes/auth");
 var morgan = require('morgan');
 const winston = require("../config/winston");
-const { invalid } = require("joi");
+
+const cors = require('cors')
 
 module.exports = (app) => {
+
+  app.use(cors())
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
