@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Emplyee, Schema } = require("../models/employee");
 const _ = require("lodash");
+const bcrybt = require("bcrypt");
 const validationMiddleware = require("/middleware/validation");
 
 router.get("/", async (req, res, next) => {
@@ -62,8 +63,13 @@ router.post("/", validationMiddleware(Schema), async (req, res, next) => {
         "city",
         "address",
         "branchID",
+        "password",
+        "role",
       ])
     );
+    // encrybt password
+    const salt = await bcrybt.genSalt(10);
+    emploee.password = await bcrybt.hash(emploee.password, salt);
     await emploee.save();
     res.send(emploee);
   } catch (error) {

@@ -4,6 +4,7 @@ const autoencrement = require("mongoose-sequence")(mongoose);
 const cities = require("full-countries-cities").getCities("egypt");
 
 const jwt = require("jsonwebtoken");
+const config = require("config");
 
 const empolyeesSchema = mongoose
   .Schema(
@@ -148,9 +149,12 @@ const Schema = Joi.object({
     .regex(/^([0-9]*)$/, { name: "numbers" })
     .length(11)
     .trim(),
-  email: Joi.string().email({ minDomainAtoms: 2 }).trim(),
-  gender: Joi.string().required().lowercase().only(["male", "female"]).trim(),
-  city: Joi.string().required().only(cities).trim(),
+  email: Joi.string().email({ minDomainSegments: 2 }).trim(),
+  gender: Joi.string().required().lowercase().valid("male", "female").trim(),
+  city: Joi.string()
+    .required()
+    .valid(...cities)
+    .trim(),
   address: Joi.string().required().max(255).min(5).trim(),
   branchID: Joi.number().required(),
 });
@@ -158,5 +162,5 @@ const Schema = Joi.object({
 // }
 
 exports.Employee = Employee;
-exports.validate = validationEmployee;
+// exports.validate = validationEmployee;
 exports.Schema = Schema;

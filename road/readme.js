@@ -189,11 +189,16 @@ const jwt = require('jsonwebtoken')
 >npm i config    
 $ to put variables in config and config read from .env
 
+* in route/employee.js send password and role
+* make to it encribtion : by bcrybt
 
 
-
-
-
+HEADLINE: config file
+default.json:
+     {
+    "jwtprivatekey": "users-jwtprivatekey"
+}
+and pas it to env file
 
 
 

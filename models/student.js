@@ -101,9 +101,9 @@ const studentsSchema = new mongoose.Schema(
       minlength: 5,
       lowercase: true,
     },
-    creationData: {
-      type: Data,
-      default: Data.now(),
+    creationDate: {
+      type: Date,
+      default: Date.now(),
       required: true,
     },
   },
@@ -114,38 +114,45 @@ const studentsSchema = new mongoose.Schema(
 const Student = mongoose.model("students", studentsSchema);
 
 // function validationStudents(student) {
-  const Schema = Joi.object({
-    employeeID: Joi.number().required().integer().positive(),
-    fullNameArabic: Joi.string().required().max(255).min(3).trim(),
-    fullNameEnglish: Joi.string().required().max(255).min(3).trim(),
-    nationalID: Joi.string()
-      .regex(/^([0-9]*)$/, { name: "numbers" })
-      .length(14)
-      .required()
-      .trim(),
-    homeTel: Joi.string()
-      .regex(/^([0-9]*)$/, { name: "numbers" })
-      .length(10)
-      .trim(),
-    mobile1: Joi.string()
-      .regex(/^([0-9]*)$/, { name: "numbers" })
-      .length(11)
-      .required()
-      .trim(),
-    mobile2: Joi.string()
-      .regex(/^([0-9]*)$/, { name: "numbers" })
-      .length(11)
-      .trim(),
-    email: Joi.string().email({ minDomainAtoms: 2 }).trim(),
-    gender: Joi.string().required().lowercase().only(["male", "female"]).trim(),
-    studentsType: Joi.String().required().lowercase().only(['individual','','']).trim(),
-    city: Joi.string().required().only(cities).trim(),
-    address: Joi.string().required().max(255).min(5).trim(),
-    branchID: Joi.number().required(),
-  });
-  // return schema.validate(student);
+const Schema = Joi.object({
+  employeeID: Joi.number().required().integer().positive(),
+  fullNameArabic: Joi.string().required().max(255).min(3).trim(),
+  fullNameEnglish: Joi.string().required().max(255).min(3).trim(),
+  nationalID: Joi.string()
+    .regex(/^([0-9]*)$/, { name: "numbers" })
+    .length(14)
+    .required()
+    .trim(),
+  homeTel: Joi.string()
+    .regex(/^([0-9]*)$/, { name: "numbers" })
+    .length(10)
+    .trim(),
+  mobile1: Joi.string()
+    .regex(/^([0-9]*)$/, { name: "numbers" })
+    .length(11)
+    .required()
+    .trim(),
+  mobile2: Joi.string()
+    .regex(/^([0-9]*)$/, { name: "numbers" })
+    .length(11)
+    .trim(),
+  email: Joi.string().required().email({ minDomainSegments: 3 }).trim(),
+  gender: Joi.string().required().lowercase().valid("male", "female").trim(),
+  studentsType: Joi.string()
+    .required()
+    .lowercase()
+    .valid("individual", "corporate", "univeristy")
+    .trim(),
+  city: Joi.string()
+    .required()
+    .valid(...cities)
+    .trim(),
+  address: Joi.string().required().max(255).min(5).trim(),
+  branchID: Joi.number().required(),
+});
+// return schema.validate(student);
 // }
 
 exports.Student = Student;
-exports.validate = validationStudents;
+// exports.validate = validationStudents;
 exports.Schema = Schema;
