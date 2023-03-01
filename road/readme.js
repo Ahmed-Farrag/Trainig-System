@@ -249,4 +249,7 @@ HEADLINE : CORS to solve ports issuse
 >npm i cors
 const cors = require('cors')
 app.use(cors())
+
+
+*payment model and router
 */
