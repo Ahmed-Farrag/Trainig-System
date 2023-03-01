@@ -168,4 +168,38 @@ password:{
 
 * 3. make routes to Authontication => make middleware to Authontication
 
+in routes make file : auth.js
+make post route
+      
+any password stored in db it's encrbted
+password --> compare --> password in db
+* install packge: >npm i bcrypt  to encribt data
+const bcrypt = require('bcrypt')
+const validPassword = await bcrypt.compare(req.body.password, user.password)
+
+
+* 4.write token method in model/employee.js it's single responseplty
+empolyeesSchema.methods.generateToken = function(){
+  //JWT = json web token
+}
+>npm install jsonwebtoken
+const jwt = require('jsonwebtoken')
+
+* we have private key to tokens : to can read tokens
+>npm i config    
+$ to put variables in config and config read from .env
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 */

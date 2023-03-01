@@ -3,6 +3,8 @@ const Joi = require("joi");
 const autoencrement = require("mongoose-sequence")(mongoose);
 const cities = require("full-countries-cities").getCities("egypt");
 
+const jwt = require("jsonwebtoken");
+
 const empolyeesSchema = mongoose
   .Schema(
     {
@@ -95,7 +97,7 @@ const empolyeesSchema = mongoose
         trim: true,
       },
       // $ securty
-      password:{
+      password: {
         type: String,
         required: true,
         trim: true,
@@ -103,47 +105,55 @@ const empolyeesSchema = mongoose
         maxlength: 1024, // to any one open db can't read password
       },
       // Authorization
-      role:{
+      role: {
         type: String,
-        enum:['admin', 'manager'],
-        default: 'manager'
-      }
-
+        enum: ["admin", "manager"],
+        default: "manager",
+      },
     },
     { timestamps: true }
   )
   .plugin(autoencrement, { inc_field: "employeeID" });
 
+empolyeesSchema.methods.generateToken = function () {
+  //JWT = json web token
+  const token = jwt.sign(
+    { _id: this._id, email: this.email },
+    config.get("jwtprivatekey")
+  );
+  return token;
+};
+
 const Employee = mongoose.model("employees", empolyeesSchema);
 
 // function validationEmployee(emploee) {
-  const Schema = Joi.object({
-    fullNameArabic: Joi.string().required().max(255).min(3).trim(),
-    fullNameEnglish: Joi.string().required().max(255).min(3).trim(),
-    nationalID: Joi.string()
-      .regex(/^([0-9]*)$/, { name: "numbers" })
-      .length(14)
-      .required()
-      .trim(),
-    homeTel: Joi.string()
-      .regex(/^([0-9]*)$/, { name: "numbers" })
-      .length(10)
-      .trim(),
-    mobile1: Joi.string()
-      .regex(/^([0-9]*)$/, { name: "numbers" })
-      .length(11)
-      .required()
-      .trim(),
-    mobile2: Joi.string()
-      .regex(/^([0-9]*)$/, { name: "numbers" })
-      .length(11)
-      .trim(),
-    email: Joi.string().email({ minDomainAtoms: 2 }).trim(),
-    gender: Joi.string().required().lowercase().only(["male", "female"]).trim(),
-    city: Joi.string().required().only(cities).trim(),
-    address: Joi.string().required().max(255).min(5).trim(),
-    branchID: Joi.number().required(),
-  });
+const Schema = Joi.object({
+  fullNameArabic: Joi.string().required().max(255).min(3).trim(),
+  fullNameEnglish: Joi.string().required().max(255).min(3).trim(),
+  nationalID: Joi.string()
+    .regex(/^([0-9]*)$/, { name: "numbers" })
+    .length(14)
+    .required()
+    .trim(),
+  homeTel: Joi.string()
+    .regex(/^([0-9]*)$/, { name: "numbers" })
+    .length(10)
+    .trim(),
+  mobile1: Joi.string()
+    .regex(/^([0-9]*)$/, { name: "numbers" })
+    .length(11)
+    .required()
+    .trim(),
+  mobile2: Joi.string()
+    .regex(/^([0-9]*)$/, { name: "numbers" })
+    .length(11)
+    .trim(),
+  email: Joi.string().email({ minDomainAtoms: 2 }).trim(),
+  gender: Joi.string().required().lowercase().only(["male", "female"]).trim(),
+  city: Joi.string().required().only(cities).trim(),
+  address: Joi.string().required().max(255).min(5).trim(),
+  branchID: Joi.number().required(),
+});
 //   return schema.validate(emploee);
 // }
 
