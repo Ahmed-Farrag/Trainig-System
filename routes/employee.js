@@ -3,8 +3,10 @@ const { Employee, Schema } = require("../models/employee");
 const _ = require("lodash");
 const bcrybt = require("bcrypt");
 const validationMiddleware = require("../middleware/validation");
+const auth = require("../middleware/auth");
+const admin = require("../middleware/adminAuthorization");
 
-router.get("/", async (req, res, next) => {
+router.get("/", [auth, admin], async (req, res, next) => {
   try {
     const employee = await Employee.find()
       .sort("employeeID")

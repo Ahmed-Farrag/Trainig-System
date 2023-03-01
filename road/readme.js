@@ -203,8 +203,38 @@ and pas it to env file
 
 
 
+$ Authentication
+$ Authorization
+>set users-jwtprivatekey=ahmed
+* make middleware/auth.js and adminAuthorization.js and make functions and call it in route/employee
 
 
+HEADLINE: loging error
+make file in startup folder -> handlerror.js
+>npm i http-errors
+var createError = require('http-errors')
+write function 
+call it in routes.js
+
+HEADLINE: log errors
+$ winston
+create file in config folder -> winston.js and write functions
+* in winston file
+>npm i winston
+>npm i app-root-pass
+var appRoot = require('app-root-path')
 
 
+* in handlerror.js use logger :
+var logger = require("../config/winston");
+  appuse((err, req, res, next) => {
+    logger.debug(err.message);
+    res.status(500).json(err.message);
+  });
+
+* مورجن اللي يحط في الاستريم اللي عندي 
+>npm i morgan
+in routers.js : var morgan = require('morgan')
+const winston = require("../config/winston");
+app.use(morgan('combind', {stream: winston.stream}))
 */

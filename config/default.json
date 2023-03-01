@@ -1,3 +1,7 @@
 {
+    "Server":{
+        "host":"localhost",
+        "database" :"yourCourses"
+    },
     "jwtprivatekey": "users-jwtprivatekey"
 }
