@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Joi = require("joi");
 const autoencrement = require("mongoose-sequence")(mongoose);
-const cities = require("full-countries-cities").getCities("egypt");
 
 const courseSchema = new mongoose.Schema(
   {

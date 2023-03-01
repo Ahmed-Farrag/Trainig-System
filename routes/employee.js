@@ -1,12 +1,12 @@
 const router = require("express").Router();
-const { Emplyee, Schema } = require("../models/employee");
+const { Employee, Schema } = require("../models/employee");
 const _ = require("lodash");
 const bcrybt = require("bcrypt");
 const validationMiddleware = require("../middleware/validation");
 
 router.get("/", async (req, res, next) => {
   try {
-    const employee = await Emplyee.find()
+    const employee = await Employee.find()
       .sort("employeeID")
       .select("-_id -__v");
     res.send(employee);
@@ -17,7 +17,7 @@ router.get("/", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    const employee = await Emplyee.findOne({
+    const employee = await Employee.findOne({
       employeeID: req.params.id,
     }).select("-_id -_v");
     if (!employee)
@@ -34,23 +34,23 @@ router.post("/", validationMiddleware(Schema), async (req, res, next) => {
   try {
     // check on nationalID and mobile becase it uniqe
     // regon to make cabslock to code
-    //#region
-    const nationalID = await Emplyee.findOne({
+    //#region  
+    const nationalID = await Employee.findOne({
       nationalID: req.body.nationalID,
     });
     if (nationalID) return res.status(400).send("the nationalID is exist");
 
-    const mobile1 = await Emplyee.findOne({ mobile1: req.body.mobile1 });
+    const mobile1 = await Employee.findOne({ mobile1: req.body.mobile1 });
     if (mobile1) return res.status(400).send("the nationalID is exist");
 
-    const mobile2 = await Emplyee.findOne({ mobile2: req.body.mobile2 });
+    const mobile2 = await Employee.findOne({ mobile2: req.body.mobile2 });
     if (mobile2) return res.status(400).send("the nationalID is exist");
 
-    const email = await Emplyee.findOne({ email: req.body.email });
+    const email = await Employee.findOne({ email: req.body.email });
     if (email) return res.status(400).send("the nationalID is exist");
     //#endregion
 
-    const emploee = new Emplyee(
+    const employee = new Employee(
       _.pick(req.body, [
         "fullNameArabic",
         "fullNameEnglish",
@@ -63,15 +63,15 @@ router.post("/", validationMiddleware(Schema), async (req, res, next) => {
         "city",
         "address",
         "branchID",
-        "password",
         "role",
+        "password",
       ])
     );
     // encrybt password
     const salt = await bcrybt.genSalt(10);
-    emploee.password = await bcrybt.hash(emploee.password, salt);
-    await emploee.save();
-    res.send(emploee);
+    employee.password = await bcrybt.hash(employee.password, salt);
+    await employee.save();
+    res.send(employee);
   } catch (error) {
     next(error);
   }

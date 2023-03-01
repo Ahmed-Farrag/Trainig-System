@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Joi = require("joi");
 const autoencrement = require("mongoose-sequence")(mongoose);
 const cities = require("full-countries-cities").getCities("egypt");
-
+const validator = require('validator');
 const jwt = require("jsonwebtoken");
 const config = require("config");
 
@@ -157,6 +157,10 @@ const Schema = Joi.object({
     .trim(),
   address: Joi.string().required().max(255).min(5).trim(),
   branchID: Joi.number().required(),
+  role: Joi.string().valid("admin", "manager"),
+  password: Joi.string()
+    .required()
+    .regex(/^([a-z0-9A-Z]*)$/),
 });
 //   return schema.validate(emploee);
 // }

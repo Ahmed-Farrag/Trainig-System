@@ -1,10 +1,11 @@
 const express = require("express");
-const branch = require("./routes/branch");
+// const branch = require("./routes/branch");
 
 const app = express();
 
-require("./startup/db");
-
+const dbConnection = require("./startup/db")
+dbConnection()
+require('./startup/config');
 
 require("./startup/routes")(app);
 
