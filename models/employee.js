@@ -94,6 +94,21 @@ const empolyeesSchema = mongoose
         required: true,
         trim: true,
       },
+      // $ securty
+      password:{
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 4,
+        maxlength: 1024, // to any one open db can't read password
+      },
+      // Authorization
+      role:{
+        type: String,
+        enum:['admin', 'manager'],
+        default: 'manager'
+      }
+
     },
     { timestamps: true }
   )

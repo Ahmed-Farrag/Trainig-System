@@ -131,6 +131,41 @@ in routes folder make branch.js:
      and in branch model remove function and rplace it to Schema and requre it in branch router:
      router.post("/", validationMiddleware(Schema),async (req, res, next) => {}
 
-6. repet it in employee
+6. repet it in employee and studet file
+
+
+
+ HEADLINE SECURTY
+*  1. Identification  = register 
+*  2. Authontication  = login 
+*  3. Authorization   = permissons
+
+http stateless  didn't remember -->  solve it :
+                                         state managment
+                                          ex: session 
+                                              token  = JWT
+
+
+* 1. for securty make this in models/employee
+password:{
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 4,
+        maxlength: 1024, // to any one open db can't read password
+      },
+      * Authorization
+      role:{
+        type: String,
+        enum:['admin', 'manager'],
+        default: 'manager'
+      }
+* 2. make refrance : app.use to .. in startup/routes.js
+  app.use("/branch", branch)
+  app.use("/students", student);
+  app.use("/employee", employee);
+  app.use("/auth", auth);
+
+* 3. make routes to Authontication => make middleware to Authontication
 
 */
